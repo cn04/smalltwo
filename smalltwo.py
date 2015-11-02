@@ -3,6 +3,7 @@ import operator
 
 
 def euclideanDistance(firstPoint, secondPoint, length):
+  #Calculate the distance between firstPoint and secondPoint, which are arrays of size length.
   distance = 0
   for i in xrange(length):
     paramDifference = firstPoint[i] - secondPoint[i]
@@ -12,6 +13,7 @@ def euclideanDistance(firstPoint, secondPoint, length):
   
 
 class Sample(object):
+  #Represents a single data point in the "lazy" learning model.
   
   def __init__(self, input, output):
     self.input = input
@@ -22,9 +24,10 @@ class Sample(object):
 class Classifier(object):
   
   def __init__(self, samples):
-    self.samples = samples
+    self.samples = samples #A list of Sample instances
     
   def neighbors(self, point, k):
+  	  #Finds the k nearest neighbors in self.samples to the input point.
 	  distances = []
 	  numParams = len(point)
 	  for i in xrange(len(self.samples)):
@@ -37,6 +40,7 @@ class Classifier(object):
 	  return neighbors
 	  
   def voteResponse(self, neighbors):
+  	  #Given a set of possible Sample instances (neighbors), have them vote for an output.
 	  votes = {}
 	  for i in xrange(len(neighbors)):
 		  response = neighbors[i].output
@@ -48,9 +52,11 @@ class Classifier(object):
 	  return sortedVotes[0][0]
     
   def classify(self, point, k):
+    #Find the output of the classifier for an input point.
     nearest = self.neighbors(point, k)
     result = self.voteResponse(nearest)
     return result
     
   def addSample(self, sample):
-	  self.samples.append(sample)
+    #Add a Sample instance to the current classifier dataset.
+    self.samples.append(sample)
