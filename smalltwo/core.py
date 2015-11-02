@@ -1,5 +1,5 @@
 
-class Dataset(object):
+class Classifier(object):
   
   def __init__(dataPoints):
     self.dataPoints = dataPoints
