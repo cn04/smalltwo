@@ -66,12 +66,12 @@ class Classifier(object):
 		#Serialize self.samples.
 		sampleList = []
 		for sample in self.samples:
-			sampleList.append(sample.__dict__)
+			sampleList.append((sample.input, sample.output))
 		return json.dumps(sampleList)
 		
 	def load(self, sampleList):
 		#Load self.samples from the serialized representation sampleList.
 		self.samples = []
 		for sample in json.loads(sampleList):
-			newSample = Sample(sample['input'], sample['output'])
+			newSample = Sample(sample[0], sample[1])
 			self.samples.append(newSample)
