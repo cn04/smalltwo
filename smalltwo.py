@@ -1,4 +1,5 @@
 import math
+import json
 import operator
 
 
@@ -60,3 +61,15 @@ class Classifier(object):
 	def addSample(self, sample):
 		#Add a Sample instance to the current classifier dataset.
 		self.samples.append(sample)
+		
+	def save(self):
+		sampleList = []
+		for sample in self.samples:
+			sampleList.append(sample.__dict__)
+		return json.dumps(sampleList)
+		
+	def load(self, sampleList):
+		self.samples = []
+		for sample in json.loads(sampleList):
+			newSample = Sample(sample['input'], sample['output'])
+			self.samples.append(newSample)
