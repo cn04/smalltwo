@@ -44,10 +44,10 @@ class Classifier(object):
 		votes = {}
 		for i in xrange(len(neighbors)):
 			response = neighbors[i].output
-		if response in votes:
-			votes[response] += 1
-		else:
-			votes[response] = 1
+			if response in votes:
+				votes[response] += 1
+			else:
+				votes[response] = 1
 		sortedVotes = sorted(votes.iteritems(), key=operator.itemgetter(1), reverse=True)
 		return sortedVotes[0][0]
     
