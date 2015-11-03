@@ -41,7 +41,7 @@ class Classifier(object):
 	  
 	def voteResponse(self, neighbors):
 		#Given a set of possible Sample instances (neighbors), have them vote for an output.
-		 votes = {}
+		votes = {}
 		for i in xrange(len(neighbors)):
 			response = neighbors[i].output
 		if response in votes:
