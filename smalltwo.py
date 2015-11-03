@@ -24,7 +24,7 @@ class Sample(object):
 
 class Classifier(object):
   
-	def __init__(self, samples):
+	def __init__(self, samples=[]):
 		self.samples = samples #A list of Sample instances
     
 	def neighbors(self, point, k):
@@ -69,9 +69,9 @@ class Classifier(object):
 			sampleList.append((sample.input, sample.output))
 		return json.dumps(sampleList)
 		
-	def load(self, sampleList):
-		#Load self.samples from the serialized representation sampleList.
+	def load(self, inputJSON):
+		#Load self.samples from the serialized representation inputJSON.
 		self.samples = []
-		for sample in json.loads(sampleList):
-			newSample = Sample(sample[0], sample[1])
+		for inputSample in json.loads(inputJSON):
+			newSample = Sample(inputSample[0], inputSample[1])
 			self.samples.append(newSample)
