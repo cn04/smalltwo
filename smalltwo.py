@@ -1,5 +1,3 @@
-# smalltwo by cn04 - a tiny lazy learning library using K Nearest Neighbors
-
 import math
 import json
 import operator
