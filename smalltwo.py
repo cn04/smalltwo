@@ -6,7 +6,7 @@ import operator
 def euclideanDistance(firstPoint, secondPoint, length):
 	#Calculate the distance between firstPoint and secondPoint, which are arrays of size length.
 	distance = 0
-	for i in xrange(length):
+	for i in range(length):
 		paramDifference = firstPoint[i] - secondPoint[i]
 		distance += pow(paramDifference, 2)
 	return math.sqrt(distance)
@@ -31,19 +31,19 @@ class Classifier(object):
 		#Finds the k nearest neighbors in self.samples to the input point.
 		distances = []
 		numParams = len(point)
-		for i in xrange(len(self.samples)):
+		for i in range(len(self.samples)):
 			distance = euclideanDistance(point, self.samples[i].input, numParams)
 			distances.append((self.samples[i], distance))
 		distances.sort(key = operator.itemgetter(1))
 		neighbors = []
-		for i in xrange(k):
+		for i in range(k):
 			neighbors.append(distances[i][0])
 		return neighbors
 	  
 	def voteResponse(self, neighbors):
 		#Given a set of possible Sample instances (neighbors), have them vote for an output.
 		votes = {}
-		for i in xrange(len(neighbors)):
+		for i in range(len(neighbors)):
 			response = neighbors[i].output
 			if response in votes:
 				votes[response] += 1
