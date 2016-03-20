@@ -49,7 +49,7 @@ class Classifier(object):
 				votes[response] += 1
 			else:
 				votes[response] = 1
-		sortedVotes = sorted(votes.iteritems(), key=operator.itemgetter(1), reverse=True)
+		sortedVotes = sorted(list(votes.items()), key=operator.itemgetter(1), reverse=True)
 		return sortedVotes[0][0]
     
 	def classify(self, point, k):
